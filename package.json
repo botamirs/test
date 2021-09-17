@@ -1,0 +1,37 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "set debug=application & nodemon app.js",
+    "dev": "nodemon app"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@app": "app",
+    "@ctrl": "app/controller",
+    "@middleware": "app/middleware",
+    "@model": "app/model",
+    "@router": "app/router",
+    "@service": "app/service"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "fastest-validator": "^1.11.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.13.8",
+    "node-fetch": "^3.0.0",
+    "passport-local": "^1.0.0"
+  }
+}
