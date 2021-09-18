@@ -1,0 +1,71 @@
+<%- include("../include/header-login.ejs") %>
+<style type="text/css">
+    .g-recaptcha{
+    transform:scale(1);
+    -webkit-transform:scale(0.80);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+    }
+    </style>
+<body dir="rtl">
+
+    <div class="main-wrapper">
+
+        <!-- Content Body Start -->
+        <div class="content-body m-0 p-0">
+
+            <div class="login-register-wrap">
+                <div class="row">
+
+                    <div class="d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12">
+                        <div class="login-register-form-wrap">
+
+                            <div class="content">
+                                <h1>ورود</h1>
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. .</p>
+                            </div>
+
+                            
+                            <div class="login-register-form">
+                                <%  errors.forEach( error =>  { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %> 
+                                    </div>
+                                <%  }) %> 
+                                <form action="/user/login" method="POST">
+                                    <div class="row">
+                                        <div class="col-12 mb-20"><input class="form-control" type="text" name="email" placeholder="نام کاربری / ایمیل"></div>
+                                        <div class="col-12 mb-20"><input class="form-control" type="password" name="pass" placeholder="رمز عبور"></div>
+                                        <div class="col-12 mb-20"><label for="remember" class="adomx-checkbox-2"><input id="remember" name="remember" type="checkbox"><i class="icon"></i>مرا به خاطر داشته باش.</label></div>
+                                        
+                                        <div class="g-recaptcha col-9" data-sitekey="6LcZX2ccAAAAAKp6uNfBTvvu8soK_gVCAzJXOwXh"></div>
+                                        <button style="width: 200px; margin: 0 auto;"  class="button button-outline button-success mb-20"><span>ورود </span></button>
+                                    </div>
+                                </form>
+                                <div class="col-12">
+                                    <div class="col-auto mb-15"><a href="#">فراموشی رمز عبور؟</a></div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto mb-15">آیا حساب کاربری ندارید؟ <a href="/user/signup">هم اکنون ایجاد کنید.</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login-register-bg order-1 order-lg-2 col-lg-7 col-12">
+                        <div class="content">
+                            <h1>ورود</h1>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- Content Body End -->
+    </div>
+    <!-- JS  -->
+    <%- include("../include/script.ejs") %>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</body>
+</html>

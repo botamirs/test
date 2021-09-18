@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <%- include("../include/header-login.ejs") %>
+</head>
+<body dir="rtl">
+    <div class="main-wrapper">
+
+        <%- include("../include/dashboard.ejs") %>
+        <!-- Content Body Start -->
+        <div class="content-body">
+            <div class="row justify-content-between align-items-center mb-10">
+                <div class="col-12 col-lg-auto mb-20">
+                    <div class="page-heading">
+                        <h3>تجارت الکترونیکی <span>/ افزودن محصول</span></h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Add or Edit Product Start -->
+            <div class="add-edit-product-wrap col-12">
+                <div class="add-edit-product-form">
+                    <form action="/admin/store", method="POST">
+                        <h4 class="title">افزودن پست</h4>
+                        <div class="row">
+                            <div class="col-lg-6 col-12 mb-30">
+                                <input class="form-control" type="text" name="title" placeholder="عنوان پست *"></div>
+                            <div class="col-lg-6 col-12 mb-30">
+                                <input class="form-control" type="text" name="slug" placeholder="ادرس صفحه پست">
+                            </div>
+                            <div class="col-12 mb-30">
+                                <textarea class="form-control" name="content" placeholder="مــتـن پـسـت *"></textarea></div>
+                        </div>
+                        <h4 class="title">عکس پست</h4>
+                        <div class="product-upload-gallery row flex-wrap">
+                            <div class="col-12 mb-30">
+                                <p class="form-help-text mt-0">آپلود حداکثر 800 × 800 پیکسل و حداکثر اندازه 2 مگابایت.</p>
+                                <input class="file-pond" type="file" multiple />
+                            </div>
+                        </div>
+                        <div class="col-3 mb-15">
+                                <select class="form-control" name="author">
+                                <optgroup label="گزینه ها">
+                            {{#each user}}
+                                <option value="{{this.id}}">{{this.fullname}} </option>
+                            {{/each}}
+                                </optgroup>
+                            </select>
+                        </div>
+                        <!-- Button Group Start -->
+                        <div class="row">
+                            <div class="d-flex flex-wrap justify-content-end col mbn-10">
+                                <button class="button button-outline button-primary mb-10 ml-10 mr-0">ذخیره و انتشار</button>
+                                <button class="button button-outline button-info mb-10 ml-10 mr-0">ذخیره پیش نویس</button>
+                                <button class="button button-outline button-danger mb-10 ml-10 mr-0">انصراف</button>
+                            </div>
+                        </div><!-- Button Group End -->
+                    </form>
+                    
+                </div>
+            </div><!-- Add or Edit Product End -->
+            
+        </div>
+    </div>
+    <%- include("../include/script.ejs") %>
+</body>
+</html>
