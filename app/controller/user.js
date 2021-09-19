@@ -12,7 +12,7 @@ module.exports.register = (req, res) => {
 module.exports.handleRegister = async (req, res) => {
     const errors = [];
     try {
-        const { email, pass } = req.body;
+        const { email, pass, fullname } = req.body;
 
         const validate =  validator(req.body, 0);
         if(validate !== true) throw validate;
@@ -25,10 +25,10 @@ module.exports.handleRegister = async (req, res) => {
         }
 
         const hashPass = bcrypt.hashSync(pass, 10);
-        const user = await userModel.create({email, password: hashPass});
+        const user = await userModel.create({email, fullname, password: hashPass});
 
         req.session.user = user;
-        res.redirect("/panel");
+        res.redirect("/dashboard");
     } catch (err) {
         req.flash("errors", err);
         res.redirect("/user/register");
@@ -62,10 +62,10 @@ module.exports.handleLogin = async (req, res) => {
             }
             
             req.session.user = user;
-            res.redirect("/panel");
+            res.redirect("/dashboard");
         } else {
             req.flash("errors", "اعتبارسنجی captcha ناموفق بود");
-            return res.redirect(403, "/user/login"); 
+            return res.redirect("/user/login"); 
         }
     } catch (err) {
         req.flash('errors', err);
@@ -81,15 +81,4 @@ module.exports.logout = (req, res) => {
         });
     }
     res.redirect("/user/login");
-}
-
-exports.rememberMe = (req, res, next) => {
-    console.log(req.body);
-    if(req.body.remember && req.body.email && req.body.email) {
-        req.session.cookie.originalMaxAge = 24 * 60 * 60 * 1000; // 24h
-    } else {
-        req.session.cookie.expire = null;
-    }
-
-    next();
 }

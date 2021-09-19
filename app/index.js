@@ -13,6 +13,7 @@ app.use(session({
     secret: "secret",
     resave: false,
     saveUninitialized: true,
+    unset: "destroy",
     store: MongoStore.create({ mongoUrl: process.env.MANGO_URL })
 }))
 app.use(flash());
@@ -26,6 +27,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.join(__dirname, "..", "node_modules", "ckeditor4")));
 
 renderMiddleware(app);
 

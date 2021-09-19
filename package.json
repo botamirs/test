@@ -14,7 +14,8 @@
     "@middleware": "app/middleware",
     "@model": "app/model",
     "@router": "app/router",
-    "@service": "app/service"
+    "@service": "app/service",
+    "node_module": "node_modules"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "bcryptjs": "^2.4.3",
+    "ckeditor4": "^4.16.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "debug": "^4.3.2",
@@ -30,6 +32,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "fastest-validator": "^1.11.1",
+    "jalali-moment": "^3.3.10",
     "module-alias": "^2.2.2",
     "mongoose": "^5.13.8",
     "node-fetch": "^3.0.0",
