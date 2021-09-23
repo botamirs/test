@@ -34,7 +34,31 @@
                     <option value="خصوصی">خصوصی</option>
                 </select>
             </div>
-    
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-sm btn-outline-secondary" type="button" id="imageUpload">
+                        اپلود عـکـس
+                    </button>
+                </div>
+               <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="selectedImage">
+                    <label for="selectedImage" id="imageStatus" class="custom-file-label">عکس مورد نظر را انتخاب کنید</label>
+               </div>
+            </div>
+
+            <div id="progressDiv" style="display: none; text-align: left ;">
+                <div class="progress">
+                    <div
+                        id="progressBar"
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    ></div>
+                </div>
+            </div>            
+
             <div class="form-group">
                 <h5>متن اصلی پست</h5>
                 <textarea name="body" class="form-control" id="body"></textarea>
@@ -53,10 +77,11 @@
     <script>
         CKEDITOR.replace('body', {
             language: "fa",
-            width: "80%",
-            height: ""
+            width: "500px",
+            height: "240px"
         });
     </script>
+    <script src="/js/upload.js"></script>
     <%- include("../include/script.ejs") %>
 </body>
 </html>
