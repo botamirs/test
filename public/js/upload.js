@@ -7,7 +7,10 @@ document.getElementById("imageUpload").onclick = function() {
     const progressBar = document.getElementById("progressBar");
 
     xhttp.onreadystatechange = function() {
-            imageStatus.innerHTML = this.responseText;
+        if(xhttp.status === 200) {
+            selectedImage.value = "";    
+        }
+        imageStatus.innerHTML = this.responseText;
     }
 
     xhttp.open("POST", "/dashboard/image-upload");
