@@ -1,7 +1,6 @@
 module.exports = (app) => {
     app.use((req, res, next) => {    
         const errors =  req.flash("errors");
-        const success = req.flash("success");
         const hasError = errors.length > 0;
         let user = null;
 
@@ -10,12 +9,12 @@ module.exports = (app) => {
         }
 
         res.userRender = (template, option) => {
-            option = {...option, errors, success, hasError}
+            option = {...option, errors, hasError}
             res.render(template, option);
         }
        
         res.adminRender = (template, option) => {
-            option = {...option, errors, success, hasError, fullName: user.fullname}
+            option = {...option, errors, hasError, fullName: user.fullname}
             res.render(template, option);
         }
         next();

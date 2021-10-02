@@ -12,7 +12,7 @@ const postSchema = {
         stringMax: "عنوان طولانی است حداکثر 150 کاراکتر"
     }},
     body: {type: "string",min:6},
-    status: {type: "string", enum: ["عمومی", "خصوصی"]} 
+    status: {type: "string", enum: ["public", "private"]} 
 
 };
 
@@ -24,7 +24,6 @@ module.exports = (postObject) => {
     const schema = postValid;
 
     const validate = schema(postObject);
-    console.log(validate);
     if(validate !== true) {
         validate.forEach(element => {
             errors.push(element.message);

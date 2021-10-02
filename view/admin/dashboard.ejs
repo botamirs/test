@@ -19,7 +19,7 @@
                                     <th>عنوان</th>
                                     <th>تاریخ</th>
                                     <th>وضعیت</th>
-                                    <th>تست</th>
+                                    <th>عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,11 +29,14 @@
                                         <td> <a href="/posts/<%= post._id %> "><%= post.title %></a>  </td>
                                         <td> <%= formatDate(post.createdAt) %> </td>
                                         <td>
-                                            <span class="badge <%= post.status === "عمومی" ? 'badge-success' : 'badge-warning'%>">
-                                                <%= post.status %> 
+                                            <span class="badge <%= post.status === "public" ? 'badge-success' : 'badge-warning'%>">
+                                                <%= post.status == "public" ? "عمومی" : "خصوصی" %> 
                                             </span>
                                         </td>
-                                        <td>تست</td>
+                                        <td>
+                                            <a href="/dashboard/edit-post/<%= post._id %> " class="btn btn-sm btn-primary">ویرایش</a>
+                                            <a href="/dashboard/delete-post/<%= post._id %> " class="btn btn-sm btn-danger">حذف</a>
+                                        </td>
                                     </tr>
                                 <% } %> 
                             </tbody>

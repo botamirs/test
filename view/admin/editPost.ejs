@@ -10,13 +10,13 @@
             <!-- ---------------------------- -->
             <%- include("../include/admin/navbar") %>                 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <h3 class="mt-2 text-center">ساخت پست جدید</h3>
+                <h3 class="mt-2 text-center">ویرایش پست </h3>
                 <div class="w-50 mx-auto">
                 <%- include("../include/errors.ejs") %>
                 </div>
                 
                 <div class="d-flex align-items-center justify-content-center">
-        <form action="/dashboard/add-post" class="w-50" method="POST">
+        <form action="/dashboard/edit-post/<%= post._id %> " class="w-50" method="POST">
             <div class="form-group">
                 <label for="title">عنوان پست</label>
                 <input
@@ -24,6 +24,7 @@
                     class="form-control w-50"
                     name="title"
                     id="title"
+                    value= "<%= post.title %>"
                 />
             </div>
     
@@ -31,7 +32,7 @@
                 <label for="status">وضعیت</label>
                 <select name="status" class="form-control w-25" id="status">
                     <option value="public" selected>عمومی</option>
-                    <option value="private"> خصوصی </option>
+                    <option value="private">خصوصی</option>
                 </select>
             </div>
             
@@ -61,7 +62,7 @@
 
             <div class="form-group">
                 <h5>متن اصلی پست</h5>
-                <textarea name="body" class="form-control" id="body"></textarea>
+                <textarea name="body" class="form-control" id="body"><%= post.body %> </textarea>
             </div>
     
             <div class="row">

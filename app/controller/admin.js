@@ -23,12 +23,67 @@ module.exports.createPost = async (req, res) => {
 
         res.redirect("/dashboard");
     } catch (err) {
-        console.log(err);
         req.flash("errors", err);
         return res.redirect("/dashboard/add-post");
      }
 }
 
+
+exports.getEditPost = async (req, res) => {
+    const post = await posts.findOne({_id: req.params.id});
+
+    if(!post) {
+        return res.redirect("/dashboard");
+    }
+
+    if(post.user.toString() !== req.session.user._id) {
+        return res.redirect("/dashboard");
+    } else {
+        res.adminRender("admin/editPost", {
+            pageTitle: "داشبورد",
+            post
+        });
+    }
+    
+}
+
+exports.editPost = async (req, res) => {
+
+    const post = await posts.findOne({_id: req.params.id});
+
+    try {
+        if(!post) return res.redirect("/dashboard");
+
+        if(post.user.toString() !== req.session.user._id) {
+            return res.redirect("/dashboard");
+        }
+        
+        const validate = postValidate(req.body);
+        if(validate !== true) throw validate;
+        
+        const { title, status, body} = req.body;
+
+        post.title = title;
+        post.status = status;
+        post.body = body;
+
+        await post.save();
+        return res.redirect("/dashboard");
+        
+    } catch (err) {
+        req.flash("errors", err);
+        return res.redirect(`/dashboard/edit-post/${post._id}`);
+    }
+}
+
+exports.deletePost = async (req, res) => {
+    try {
+        await posts.findByIdAndDelete(req.params.id);
+        res.redirect("/dashboard");
+    } catch (err) {
+        res.redirect("/dashboard")
+    }
+}
 exports.uploadImage = (req, res) => {
     // const storage = multer.diskStorage({
     //     destination: (req, file, cb) => {
